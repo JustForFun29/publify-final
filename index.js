@@ -26,7 +26,7 @@ app.use(cors());
 
 mongoose
   .connect(
-    "mongodb+srv://admin:123@cluster0.4vcemjq.mongodb.net/blog?retryWrites=true&w=majority"
+    process.env.MONGODB_URI
   )
   .then(() => console.log("DB is connected successfully"))
   .catch((err) => console.log("DB error", err));
@@ -78,7 +78,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444 , (err) => {
   if (err) {
     return console.log(err);
   }
